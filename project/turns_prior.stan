@@ -7,6 +7,6 @@ generated quantities {
     real lambda = fabs(normal_rng(0,120));
     int y[N];
     for (k in 1:N) {
-        y[k] = poisson_rng(lambda*t[k]);
+        y[k] = poisson_rng(lambda*t[k]+adv);
     }
 }
