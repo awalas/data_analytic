@@ -8,24 +8,31 @@ using namespace stan::math;
 
 
 stan::math::profile_map profiles__;
-static constexpr std::array<const char*, 17> locations_array__ = 
+static constexpr std::array<const char*, 24> locations_array__ = 
 {" (found before start of program)",
- " (in 'D:/Studia/ProjektDA/czesiu/czesiu/model1.stan', line 6, column 2 to column 22)",
- " (in 'D:/Studia/ProjektDA/czesiu/czesiu/model1.stan', line 15, column 2 to column 20)",
- " (in 'D:/Studia/ProjektDA/czesiu/czesiu/model1.stan', line 16, column 2 to column 15)",
- " (in 'D:/Studia/ProjektDA/czesiu/czesiu/model1.stan', line 18, column 4 to column 44)",
- " (in 'D:/Studia/ProjektDA/czesiu/czesiu/model1.stan', line 19, column 4 to column 35)",
- " (in 'D:/Studia/ProjektDA/czesiu/czesiu/model1.stan', line 17, column 17 to line 20, column 3)",
- " (in 'D:/Studia/ProjektDA/czesiu/czesiu/model1.stan', line 17, column 2 to line 20, column 3)",
- " (in 'D:/Studia/ProjektDA/czesiu/czesiu/model1.stan', line 9, column 2 to column 25)",
- " (in 'D:/Studia/ProjektDA/czesiu/czesiu/model1.stan', line 11, column 4 to column 27)",
- " (in 'D:/Studia/ProjektDA/czesiu/czesiu/model1.stan', line 10, column 17 to line 12, column 3)",
- " (in 'D:/Studia/ProjektDA/czesiu/czesiu/model1.stan', line 10, column 2 to line 12, column 3)",
- " (in 'D:/Studia/ProjektDA/czesiu/czesiu/model1.stan', line 2, column 2 to column 8)",
- " (in 'D:/Studia/ProjektDA/czesiu/czesiu/model1.stan', line 3, column 8 to column 9)",
- " (in 'D:/Studia/ProjektDA/czesiu/czesiu/model1.stan', line 3, column 2 to column 11)",
- " (in 'D:/Studia/ProjektDA/czesiu/czesiu/model1.stan', line 15, column 9 to column 10)",
- " (in 'D:/Studia/ProjektDA/czesiu/czesiu/model1.stan', line 16, column 12 to column 13)"};
+ " (in 'D:/Studia/Nowyprojekt_DA/model1.stan', line 7, column 2 to column 20)",
+ " (in 'D:/Studia/Nowyprojekt_DA/model1.stan', line 11, column 2 to column 23)",
+ " (in 'D:/Studia/Nowyprojekt_DA/model1.stan', line 13, column 4 to column 38)",
+ " (in 'D:/Studia/Nowyprojekt_DA/model1.stan', line 12, column 17 to line 14, column 3)",
+ " (in 'D:/Studia/Nowyprojekt_DA/model1.stan', line 12, column 2 to line 14, column 3)",
+ " (in 'D:/Studia/Nowyprojekt_DA/model1.stan', line 25, column 2 to column 18)",
+ " (in 'D:/Studia/Nowyprojekt_DA/model1.stan', line 26, column 2 to column 20)",
+ " (in 'D:/Studia/Nowyprojekt_DA/model1.stan', line 28, column 4 to column 39)",
+ " (in 'D:/Studia/Nowyprojekt_DA/model1.stan', line 29, column 4 to column 46)",
+ " (in 'D:/Studia/Nowyprojekt_DA/model1.stan', line 27, column 17 to line 30, column 3)",
+ " (in 'D:/Studia/Nowyprojekt_DA/model1.stan', line 27, column 2 to line 30, column 3)",
+ " (in 'D:/Studia/Nowyprojekt_DA/model1.stan', line 18, column 2 to column 22)",
+ " (in 'D:/Studia/Nowyprojekt_DA/model1.stan', line 20, column 4 to column 31)",
+ " (in 'D:/Studia/Nowyprojekt_DA/model1.stan', line 19, column 17 to line 21, column 3)",
+ " (in 'D:/Studia/Nowyprojekt_DA/model1.stan', line 19, column 2 to line 21, column 3)",
+ " (in 'D:/Studia/Nowyprojekt_DA/model1.stan', line 2, column 2 to column 8)",
+ " (in 'D:/Studia/Nowyprojekt_DA/model1.stan', line 3, column 33 to column 34)",
+ " (in 'D:/Studia/Nowyprojekt_DA/model1.stan', line 3, column 2 to column 36)",
+ " (in 'D:/Studia/Nowyprojekt_DA/model1.stan', line 4, column 8 to column 9)",
+ " (in 'D:/Studia/Nowyprojekt_DA/model1.stan', line 4, column 2 to column 11)",
+ " (in 'D:/Studia/Nowyprojekt_DA/model1.stan', line 11, column 9 to column 10)",
+ " (in 'D:/Studia/Nowyprojekt_DA/model1.stan', line 25, column 9 to column 10)",
+ " (in 'D:/Studia/Nowyprojekt_DA/model1.stan', line 26, column 9 to column 10)"};
 
 
 
@@ -33,7 +40,8 @@ static constexpr std::array<const char*, 17> locations_array__ =
 class model1_model final : public model_base_crtp<model1_model> {
 
  private:
-  int M;
+  int G;
+  std::vector<int> N;
   std::vector<int> y; 
   
  
@@ -62,32 +70,48 @@ class model1_model final : public model_base_crtp<model1_model> {
     try {
       int pos__ = std::numeric_limits<int>::min();
       pos__ = 1;
-      current_statement__ = 12;
-      context__.validate_dims("data initialization","M","int",
-           std::vector<size_t>{});
-      M = std::numeric_limits<int>::min();
-      
-      
-      current_statement__ = 12;
-      M = context__.vals_i("M")[(1 - 1)];
-      current_statement__ = 13;
-      stan::math::validate_non_negative_index("y", "M", M);
-      current_statement__ = 14;
-      context__.validate_dims("data initialization","y","int",
-           std::vector<size_t>{static_cast<size_t>(M)});
-      y = std::vector<int>(M, std::numeric_limits<int>::min());
-      
-      
-      current_statement__ = 14;
-      y = context__.vals_i("y");
-      current_statement__ = 15;
-      stan::math::validate_non_negative_index("log_lik", "M", M);
       current_statement__ = 16;
-      stan::math::validate_non_negative_index("y_sim", "M", M);
+      context__.validate_dims("data initialization","G","int",
+           std::vector<size_t>{});
+      G = std::numeric_limits<int>::min();
+      
+      
+      current_statement__ = 16;
+      G = context__.vals_i("G")[(1 - 1)];
+      current_statement__ = 17;
+      stan::math::validate_non_negative_index("N", "G", G);
+      current_statement__ = 18;
+      context__.validate_dims("data initialization","N","int",
+           std::vector<size_t>{static_cast<size_t>(G)});
+      N = std::vector<int>(G, std::numeric_limits<int>::min());
+      
+      
+      current_statement__ = 18;
+      N = context__.vals_i("N");
+      current_statement__ = 18;
+      stan::math::check_greater_or_equal(function__, "N", N, 1);
+      current_statement__ = 18;
+      stan::math::check_less_or_equal(function__, "N", N, 365);
+      current_statement__ = 19;
+      stan::math::validate_non_negative_index("y", "G", G);
+      current_statement__ = 20;
+      context__.validate_dims("data initialization","y","int",
+           std::vector<size_t>{static_cast<size_t>(G)});
+      y = std::vector<int>(G, std::numeric_limits<int>::min());
+      
+      
+      current_statement__ = 20;
+      y = context__.vals_i("y");
+      current_statement__ = 21;
+      stan::math::validate_non_negative_index("theta", "G", G);
+      current_statement__ = 22;
+      stan::math::validate_non_negative_index("y_sim", "G", G);
+      current_statement__ = 23;
+      stan::math::validate_non_negative_index("log_lik", "G", G);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
     }
-    num_params_r__ = 1;
+    num_params_r__ = 365;
     
   }
   
@@ -109,19 +133,32 @@ class model1_model final : public model_base_crtp<model1_model> {
     (void) function__;  // suppress unused var warning
     
     try {
-      local_scalar_t__ lambda = DUMMY_VAR__;
+      Eigen::Matrix<local_scalar_t__, -1, 1> alpha =
+         Eigen::Matrix<local_scalar_t__, -1, 1>::Constant(365, DUMMY_VAR__);
       current_statement__ = 1;
-      lambda = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
-                 0, lp__);
+      alpha = in__.template read<Eigen::Matrix<local_scalar_t__, -1, 1>>(365);
+      std::vector<local_scalar_t__> theta =
+         std::vector<local_scalar_t__>(G, DUMMY_VAR__);
+      current_statement__ = 5;
+      for (int k = 1; k <= G; ++k) {
+        current_statement__ = 3;
+        stan::model::assign(theta,
+          stan::math::inv_logit(
+            stan::model::rvalue(alpha, "alpha",
+              stan::model::index_uni(stan::model::rvalue(N, "N",
+                                       stan::model::index_uni(k))))),
+          "assigning variable theta", stan::model::index_uni(k));
+      }
       {
-        current_statement__ = 8;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(lambda, 0, 120));
-        current_statement__ = 11;
-        for (int k = 1; k <= M; ++k) {
-          current_statement__ = 9;
+        current_statement__ = 12;
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(alpha, 0, 1));
+        current_statement__ = 15;
+        for (int k = 1; k <= G; ++k) {
+          current_statement__ = 13;
           lp_accum__.add(
-            stan::math::poisson_lpmf<propto__>(
-              stan::model::rvalue(y, "y", stan::model::index_uni(k)), lambda));
+            stan::math::bernoulli_lpmf<propto__>(
+              stan::model::rvalue(y, "y", stan::model::index_uni(k)),
+              stan::model::rvalue(theta, "theta", stan::model::index_uni(k))));
         }
       }
     } catch (const std::exception& e) {
@@ -156,38 +193,58 @@ class model1_model final : public model_base_crtp<model1_model> {
     (void) function__;  // suppress unused var warning
     
     try {
-      double lambda = std::numeric_limits<double>::quiet_NaN();
+      Eigen::Matrix<double, -1, 1> alpha =
+         Eigen::Matrix<double, -1, 1>::Constant(365,
+           std::numeric_limits<double>::quiet_NaN());
       current_statement__ = 1;
-      lambda = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
-                 0, lp__);
-      out__.write(lambda);
+      alpha = in__.template read<Eigen::Matrix<local_scalar_t__, -1, 1>>(365);
+      std::vector<double> theta =
+         std::vector<double>(G, std::numeric_limits<double>::quiet_NaN());
+      out__.write(alpha);
       if (stan::math::logical_negation((stan::math::primitive_value(
             emit_transformed_parameters__) || stan::math::primitive_value(
             emit_generated_quantities__)))) {
         return ;
       } 
+      current_statement__ = 5;
+      for (int k = 1; k <= G; ++k) {
+        current_statement__ = 3;
+        stan::model::assign(theta,
+          stan::math::inv_logit(
+            stan::model::rvalue(alpha, "alpha",
+              stan::model::index_uni(stan::model::rvalue(N, "N",
+                                       stan::model::index_uni(k))))),
+          "assigning variable theta", stan::model::index_uni(k));
+      }
+      if (emit_transformed_parameters__) {
+        out__.write(theta);
+      } 
       if (stan::math::logical_negation(emit_generated_quantities__)) {
         return ;
       } 
-      Eigen::Matrix<double, -1, 1> log_lik =
-         Eigen::Matrix<double, -1, 1>::Constant(M,
+      Eigen::Matrix<double, -1, 1> y_sim =
+         Eigen::Matrix<double, -1, 1>::Constant(G,
            std::numeric_limits<double>::quiet_NaN());
-      std::vector<int> y_sim =
-         std::vector<int>(M, std::numeric_limits<int>::min());
-      current_statement__ = 7;
-      for (int k = 1; k <= M; ++k) {
-        current_statement__ = 4;
-        stan::model::assign(log_lik,
-          stan::math::poisson_lpmf<false>(
-            stan::model::rvalue(y, "y", stan::model::index_uni(k)), lambda),
-          "assigning variable log_lik", stan::model::index_uni(k));
-        current_statement__ = 5;
+      Eigen::Matrix<double, -1, 1> log_lik =
+         Eigen::Matrix<double, -1, 1>::Constant(G,
+           std::numeric_limits<double>::quiet_NaN());
+      current_statement__ = 11;
+      for (int k = 1; k <= G; ++k) {
+        current_statement__ = 8;
         stan::model::assign(y_sim,
-          stan::math::poisson_rng(lambda, base_rng__),
+          stan::math::bernoulli_rng(
+            stan::model::rvalue(theta, "theta", stan::model::index_uni(k)),
+            base_rng__),
           "assigning variable y_sim", stan::model::index_uni(k));
+        current_statement__ = 9;
+        stan::model::assign(log_lik,
+          stan::math::bernoulli_lpmf<false>(
+            stan::model::rvalue(y, "y", stan::model::index_uni(k)),
+            stan::model::rvalue(theta, "theta", stan::model::index_uni(k))),
+          "assigning variable log_lik", stan::model::index_uni(k));
       }
-      out__.write(log_lik);
       out__.write(y_sim);
+      out__.write(log_lik);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
     }
@@ -208,9 +265,13 @@ class model1_model final : public model_base_crtp<model1_model> {
     try {
       int pos__ = std::numeric_limits<int>::min();
       pos__ = 1;
-      local_scalar_t__ lambda = DUMMY_VAR__;
-      lambda = in__.read<local_scalar_t__>();
-      out__.write_free_lb(0, lambda);
+      Eigen::Matrix<local_scalar_t__, -1, 1> alpha =
+         Eigen::Matrix<local_scalar_t__, -1, 1>::Constant(365, DUMMY_VAR__);
+      for (int sym1__ = 1; sym1__ <= 365; ++sym1__) {
+        stan::model::assign(alpha, in__.read<local_scalar_t__>(),
+          "assigning variable alpha", stan::model::index_uni(sym1__));
+      }
+      out__.write(alpha);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
     }
@@ -218,15 +279,18 @@ class model1_model final : public model_base_crtp<model1_model> {
     
   inline void get_param_names(std::vector<std::string>& names__) const {
     
-    names__ = std::vector<std::string>{"lambda", "log_lik", "y_sim"};
+    names__ = std::vector<std::string>{"alpha", "theta", "y_sim", "log_lik"};
     
     } // get_param_names() 
     
   inline void get_dims(std::vector<std::vector<size_t>>& dimss__) const {
     
-    dimss__ = std::vector<std::vector<size_t>>{std::vector<size_t>{},
-      std::vector<size_t>{static_cast<size_t>(M)},
-      std::vector<size_t>{static_cast<size_t>(M)}};
+    dimss__ = std::vector<std::vector<size_t>>{std::vector<size_t>{
+                                                                   static_cast<size_t>(365)
+                                                                   },
+      std::vector<size_t>{static_cast<size_t>(G)},
+      std::vector<size_t>{static_cast<size_t>(G)},
+      std::vector<size_t>{static_cast<size_t>(G)}};
     
     } // get_dims() 
     
@@ -236,20 +300,28 @@ class model1_model final : public model_base_crtp<model1_model> {
                                       bool emit_generated_quantities__ = true) const
     final {
     
-    param_names__.emplace_back(std::string() + "lambda");
+    for (int sym1__ = 1; sym1__ <= 365; ++sym1__) {
+      {
+        param_names__.emplace_back(std::string() + "alpha" + '.' + std::to_string(sym1__));
+      } 
+    }
     if (emit_transformed_parameters__) {
-      
+      for (int sym1__ = 1; sym1__ <= G; ++sym1__) {
+        {
+          param_names__.emplace_back(std::string() + "theta" + '.' + std::to_string(sym1__));
+        } 
+      }
     }
     
     if (emit_generated_quantities__) {
-      for (int sym1__ = 1; sym1__ <= M; ++sym1__) {
-        {
-          param_names__.emplace_back(std::string() + "log_lik" + '.' + std::to_string(sym1__));
-        } 
-      }
-      for (int sym1__ = 1; sym1__ <= M; ++sym1__) {
+      for (int sym1__ = 1; sym1__ <= G; ++sym1__) {
         {
           param_names__.emplace_back(std::string() + "y_sim" + '.' + std::to_string(sym1__));
+        } 
+      }
+      for (int sym1__ = 1; sym1__ <= G; ++sym1__) {
+        {
+          param_names__.emplace_back(std::string() + "log_lik" + '.' + std::to_string(sym1__));
         } 
       }
     }
@@ -262,20 +334,28 @@ class model1_model final : public model_base_crtp<model1_model> {
                                         bool emit_generated_quantities__ = true) const
     final {
     
-    param_names__.emplace_back(std::string() + "lambda");
+    for (int sym1__ = 1; sym1__ <= 365; ++sym1__) {
+      {
+        param_names__.emplace_back(std::string() + "alpha" + '.' + std::to_string(sym1__));
+      } 
+    }
     if (emit_transformed_parameters__) {
-      
+      for (int sym1__ = 1; sym1__ <= G; ++sym1__) {
+        {
+          param_names__.emplace_back(std::string() + "theta" + '.' + std::to_string(sym1__));
+        } 
+      }
     }
     
     if (emit_generated_quantities__) {
-      for (int sym1__ = 1; sym1__ <= M; ++sym1__) {
-        {
-          param_names__.emplace_back(std::string() + "log_lik" + '.' + std::to_string(sym1__));
-        } 
-      }
-      for (int sym1__ = 1; sym1__ <= M; ++sym1__) {
+      for (int sym1__ = 1; sym1__ <= G; ++sym1__) {
         {
           param_names__.emplace_back(std::string() + "y_sim" + '.' + std::to_string(sym1__));
+        } 
+      }
+      for (int sym1__ = 1; sym1__ <= G; ++sym1__) {
+        {
+          param_names__.emplace_back(std::string() + "log_lik" + '.' + std::to_string(sym1__));
         } 
       }
     }
@@ -284,13 +364,13 @@ class model1_model final : public model_base_crtp<model1_model> {
     
   inline std::string get_constrained_sizedtypes() const {
     
-    return std::string("[{\"name\":\"lambda\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"log_lik\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(M) + "},\"block\":\"generated_quantities\"},{\"name\":\"y_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(M) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"}]");
+    return std::string("[{\"name\":\"alpha\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(365) + "},\"block\":\"parameters\"},{\"name\":\"theta\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(G) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"transformed_parameters\"},{\"name\":\"y_sim\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(G) + "},\"block\":\"generated_quantities\"},{\"name\":\"log_lik\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(G) + "},\"block\":\"generated_quantities\"}]");
     
     } // get_constrained_sizedtypes() 
     
   inline std::string get_unconstrained_sizedtypes() const {
     
-    return std::string("[{\"name\":\"lambda\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"log_lik\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(M) + "},\"block\":\"generated_quantities\"},{\"name\":\"y_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(M) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"}]");
+    return std::string("[{\"name\":\"alpha\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(365) + "},\"block\":\"parameters\"},{\"name\":\"theta\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(G) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"transformed_parameters\"},{\"name\":\"y_sim\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(G) + "},\"block\":\"generated_quantities\"},{\"name\":\"log_lik\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(G) + "},\"block\":\"generated_quantities\"}]");
     
     } // get_unconstrained_sizedtypes() 
     
@@ -303,10 +383,10 @@ class model1_model final : public model_base_crtp<model1_model> {
                             const bool emit_transformed_parameters = true,
                             const bool emit_generated_quantities = true,
                             std::ostream* pstream = nullptr) const {
-      const size_t num_params__ = 1;
-      const size_t num_transformed = 0;
+      const size_t num_params__ = 365;
+      const size_t num_transformed = G;
       const size_t num_gen_quantities = 
-  (M + M);
+  (G + G);
       std::vector<double> vars_vec(num_params__
        + (emit_transformed_parameters * num_transformed)
        + (emit_generated_quantities * num_gen_quantities));
@@ -324,10 +404,10 @@ class model1_model final : public model_base_crtp<model1_model> {
                             bool emit_transformed_parameters = true,
                             bool emit_generated_quantities = true,
                             std::ostream* pstream = nullptr) const {
-      const size_t num_params__ = 1;
-      const size_t num_transformed = 0;
+      const size_t num_params__ = 365;
+      const size_t num_transformed = G;
       const size_t num_gen_quantities = 
-  (M + M);
+  (G + G);
       vars.resize(num_params__
         + (emit_transformed_parameters * num_transformed)
         + (emit_generated_quantities * num_gen_quantities));
@@ -363,8 +443,8 @@ class model1_model final : public model_base_crtp<model1_model> {
                               std::vector<int>& params_i,
                               std::vector<double>& vars,
                               std::ostream* pstream__ = nullptr) const {
-     constexpr std::array<const char*, 1> names__{"lambda"};
-      const std::array<Eigen::Index, 1> constrain_param_sizes__{1};
+     constexpr std::array<const char*, 1> names__{"alpha"};
+      const std::array<Eigen::Index, 1> constrain_param_sizes__{365};
       const auto num_constrained_params__ = std::accumulate(
         constrain_param_sizes__.begin(), constrain_param_sizes__.end(), 0);
     

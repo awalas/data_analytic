@@ -1,21 +1,31 @@
 data {
-  int M; //number of games analyzed
-  int y[M]; //number of openings
+  int G; //number of games
+  int <lower = 1, upper = 365> N[G]; //openning
+  int y[G]; 
 }
 parameters {
-  real<lower=0>lambda;
+  vector[365] alpha;
 }
-model {
-  lambda ~ normal(0,120);
-  for (k in 1:M) {
-    y[k] ~ poisson(lambda);
+
+transformed parameters {
+  array [G] real theta;
+  for (k in 1:G) {
+    theta[k] = inv_logit(alpha[N[k]]);
   }
 }
+
+model {
+  alpha ~ normal(0,1);
+  for (k in 1:G) {
+    y[k] ~ bernoulli(theta[k]);
+  }
+}
+
 generated quantities {
-  vector[M] log_lik;
-  int y_sim[M];
-  for (k in 1:M) {
-    log_lik[k]= poisson_lpmf(y[k] | lambda);
-    y_sim[k] = poisson_rng(lambda);
+  vector[G] y_sim;
+  vector[G] log_lik;
+  for (k in 1:G) {
+    y_sim[k] = bernoulli_rng(theta[k]);
+    log_lik[k]= bernoulli_lpmf(y[k]|theta[k]);
   }
 }
